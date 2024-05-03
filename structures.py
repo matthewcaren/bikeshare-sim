@@ -1,6 +1,9 @@
 import numpy as np
 
 class Ride:
+    '''
+    Represents a ride
+    '''
     def __init__(self, start, dest, start_time, length):
         self.start = start
         self.destination = dest
@@ -12,6 +15,10 @@ class Ride:
 
 
 class Station:
+    '''
+    Represents a station with docks, standard bikes, ebikes
+    Note that bikes and docks are treated as indistinguishable
+    '''
     def __init__(self, num_docks, num_sbikes, num_ebikes, res_limit):
         self.num_docks = num_docks
         self.num_sbikes = num_sbikes
@@ -20,6 +27,9 @@ class Station:
         self.n_sreserved = 0
         self.n_ereserved = 0
         self.res_limit = res_limit
+
+    def __repr__(self):
+        return f"Station: ({self.num_sbikes}, {self.n_sreserved}) SBikes, ({self.num_ebikes}, {self.n_ereserved}) EBikes"
         
 
     def check_out(self, btype):
