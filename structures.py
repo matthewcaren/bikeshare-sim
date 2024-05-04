@@ -77,7 +77,7 @@ class Station:
         assert (btype == "SBIKE" or btype == "EBIKE")
 
         # check if we've exceeded reservation limit
-        if self.n_reserved >= self.res_limit:
+        if self.n_sreserved + self.n_ereserved >= self.res_limit:
             return False
 
         if btype == "SBIKE":
