@@ -34,7 +34,7 @@ class Station:
     def __repr__(self):
         return f"Station: ({self.num_sbikes}, {self.n_sreserved}) SBikes, ({self.num_ebikes}, {self.n_ereserved}) EBikes"
 
-    def check_out(self, btype):
+    def check_out(self, btype, can_convert_ebikes=False):
         """
         Check out a bike & update station
         Returns True if successful and False if none available
@@ -44,6 +44,10 @@ class Station:
         if btype == "SBIKE":
             if self.num_sbikes > 0 and self.num_sbikes > self.n_sreserved:
                 self.num_sbikes -= 1
+                return True
+            elif can_convert_ebikes and self.num_ebikes > 0 and self.num_ebikes > self.n_ereserved:
+                # convert an ebike to sbike
+                self.num_ebikes -= 1
                 return True
             else:
                 return False
